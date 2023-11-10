@@ -1,0 +1,9 @@
+body {
+    background-image: url("../img/ac.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hover-list:hover {
+    background-color: lightgray;
+}
