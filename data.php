@@ -35,7 +35,10 @@ $result = mysqli_query($koneksi, $query);
         echo "<div class='alert alert-success'>$message</div>";
     }
     ?>
+<<<<<<< HEAD
     <p>Tambahkan <a href="tambah_user.php">user baru</a></p>
+=======
+>>>>>>> 57b6d0325bc574d54ffbb32e3253b03435370989
     <table class="table">
         <thead>
             <tr>
@@ -68,7 +71,10 @@ $result = mysqli_query($koneksi, $query);
             ?>
         </tbody>
     </table>
+<<<<<<< HEAD
     <p class="float-end">Decrypt the password <a href="https://md5decrypt.net/en/#answer" target="_blank">here</a></p>
+=======
+>>>>>>> 57b6d0325bc574d54ffbb32e3253b03435370989
 
     <script>
     // Fungsi untuk konfirmasi sebelum menghapus

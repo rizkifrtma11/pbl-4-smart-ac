@@ -10,17 +10,23 @@ if (isset($_POST['Register'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
+<<<<<<< HEAD
     // Regex untuk memeriksa aturan password
     $password_regex = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>])[A-Za-z\d!@#$%^&*()\-_=+{};:,<.>.]{8,}$/';
 
+=======
+>>>>>>> 57b6d0325bc574d54ffbb32e3253b03435370989
     if ($username == '' or $password == '') {
         $err .= "<li>Silakan masukkan username dan password</li>";
     }
 
+<<<<<<< HEAD
     if (!preg_match($password_regex, $password)) {
         $err .= "<li>Password harus terdiri dari minimal 8 karakter dengan kombinasi huruf besar, huruf kecil, angka, dan simbol.</li>";
     }
 
+=======
+>>>>>>> 57b6d0325bc574d54ffbb32e3253b03435370989
     if (empty($err)) {
         $sql1 = "SELECT * FROM user WHERE username = '$username'";
         $q1 = mysqli_query($koneksi, $sql1);

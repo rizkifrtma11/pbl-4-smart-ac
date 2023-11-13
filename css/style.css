@@ -6,9 +6,12 @@ body {
 
 .hover-list:hover {
     background-color: lightgray;
+<<<<<<< HEAD
     color: grey;
 }
 
 ul li {
   list-style-type: none;
+=======
+>>>>>>> 57b6d0325bc574d54ffbb32e3253b03435370989
 }

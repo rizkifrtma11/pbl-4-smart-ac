@@ -21,7 +21,11 @@
                 <label for="exampleInputPassword1" class="form-label">Password</label>
                 <input type="password" name="password" class="form-control" placeholder="Masukkan Password" id="exampleInputPassword1">
             </div>
+<<<<<<< HEAD
             <p>Tidak punya akun? <a href="registrasi.php">Registrasi Sekarang!</a></p>
+=======
+            <p>Don't have account? <a href="registrasi.php">Register Now!</a></p>
+>>>>>>> 57b6d0325bc574d54ffbb32e3253b03435370989
             <button type="submit" class="btn btn-primary" name="Login">Login</button> <!-- Anda perlu menambahkan name="Login" pada tombol submit -->
         </form>
 
