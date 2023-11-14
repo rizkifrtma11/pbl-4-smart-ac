@@ -82,7 +82,7 @@ if (isset($_POST['Register'])) {
                 <label for="password" class="form-label">Password</label>
                 <input type="password" name="password" class="form-control" placeholder="Masukkan Password">
             </div>
-            <p>Back to <a href="index.php">Login</a></p>
+            <p>Kembali ke <a href="index.php">Halaman Login</a></p>
             <button type="submit" class="btn btn-primary" name="Register">Daftar</button>
         </form>
         </div>
