@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
     <div class="container-fluid sticky-bottom">
         <div class="container">
             <div class="row">
@@ -7,6 +9,7 @@
             </div>
         </div>
     </div>
+>>>>>>> 57b6d0325bc574d54ffbb32e3253b03435370989
     
     <!-- JS Bootstrap -->
     <script src="js/bootstrap.min.js"></script>

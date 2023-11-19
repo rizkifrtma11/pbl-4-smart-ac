@@ -29,7 +29,11 @@ if (isset($_POST['Login'])) { // Ganti 'login' menjadi 'Login' agar sesuai denga
             header("location: dashboard.php");
             exit();
         } else {
+<<<<<<< HEAD
+            $err .= "<li>Akun tidak ditemukan, harap hubungi admin.</li>";
+=======
             $err .= "<li>Akun tidak ditemukan</li>";
+>>>>>>> 57b6d0325bc574d54ffbb32e3253b03435370989
         }
     }
 }
