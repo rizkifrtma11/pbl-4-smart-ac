@@ -1,4 +1,14 @@
+<?php
+session_start();
 
+// Mengecek apakah pengguna sudah login atau belum
+if (!isset($_SESSION['admin_username'])) {
+    header("Location: index.php"); // Jika belum, redirect ke halaman login
+    exit();
+}
+
+$username = $_SESSION['admin_username'];
+?>
 
 <!DOCTYPE html>
 <html lang="en">
