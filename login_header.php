@@ -36,7 +36,7 @@ if (isset($_POST['Login'])) {
             header("location: dashboard.php");
             exit();
         } else {
-            $err .= "<li>Akun tidak ditemukan, harap hubungi admin.</li>";
+            $err .= "<li>Password atau username salah</li>";
         }
     }
 }

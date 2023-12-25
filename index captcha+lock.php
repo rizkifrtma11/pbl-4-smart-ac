@@ -2,6 +2,24 @@
 session_start();
 $err = "";
 
+// Batas percobaan login user
+function limit_login_attempts($username) {
+    $max_attempts = 3; // Jumlah maksimal percobaan login 3 kali
+    $lockout_time = 60; // Waktu dalam detik untuk mengunci akun setelah melebihi batas percobaan
+
+    if (!isset($_SESSION['login_attempts'][$username])) {
+        $_SESSION['login_attempts'][$username] = 0;
+    }
+
+    $_SESSION['login_attempts'][$username]++;
+
+    if ($_SESSION['login_attempts'][$username] > $max_attempts) {
+        // Blokir atau tunda akses ke akun untuk jangka waktu tertentu
+        $_SESSION['login_blocked'][$username] = time() + $lockout_time;
+        // Mungkin Anda ingin memberikan pesan kesalahan kepada pengguna di sini
+    }
+}
+
 if (isset($_SESSION['admin_username'])) {
     header("location: dashboard.php");
     exit();
@@ -12,31 +30,41 @@ include("connect.php");
 $username = "";
 $password = "";
 
-if (isset($_POST['Login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $userCaptcha = $_POST['captcha'];
+// Check if user is blocked
+if (isset($_SESSION['login_blocked'][$username]) && $_SESSION['login_blocked'][$username] > time()) {
+    $err .= "<li>Anda memasukkan password salah. Coba lagi dalam 1 menit.</li>";
+} else {
+    // memvalidasi percobaan login
+    limit_login_attempts($username);
 
-    if ($username == '' or $password == '' or $userCaptcha == '') {
-        $err .= "<li>Silahkan masukkan username, password, dan captcha</li>";
-    }
+    if (isset($_POST['Login'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $userCaptcha = $_POST['captcha'];
 
-    // Validate captcha
-    if ($userCaptcha !== $_SESSION['code']) {
-        $err .= "<li>Captcha salah</li>";
-    }
+        if ($username == '' or $password == '' or $userCaptcha == '') {
+            $err .= "<li>Silahkan masukkan username, password, dan captcha</li>";
+        }
 
-    if (empty($err)) {
-        $sql1 = "select * from user where username = '$username'";
-        $q1 = mysqli_query($koneksi, $sql1);
-        $r1 = mysqli_fetch_array($q1);
+        // Validasi captcha
+        if ($userCaptcha !== $_SESSION['code']) {
+            $err .= "<li>Captcha salah</li>";
+        }
 
-        if ($r1 && $r1['password'] == md5($password)) {
-            $_SESSION['admin_username'] = $username;
-            header("location: dashboard.php");
-            exit();
-        } else {
-            $err .= "<li>Akun tidak ditemukan, harap hubungi admin.</li>";
+        if (empty($err)) {
+            $sql1 = "select * from user where username = '$username'";
+            $q1 = mysqli_query($koneksi, $sql1);
+            $r1 = mysqli_fetch_array($q1);
+
+            if ($r1 && $r1['password'] == md5($password)) {
+                $_SESSION['admin_username'] = $username;
+                // Mereset login limit saat login sukses
+                $_SESSION['login_attempts'][$username] = 0;
+                header("location: dashboard.php");
+                exit();
+            } else {
+                $err .= "<li>Akun tidak ditemukan, harap hubungi admin.</li>";
+            }
         }
     }
 }
@@ -91,7 +119,7 @@ if (isset($_POST['Login'])) {
                     <input type="password" name="password" class="form-control" placeholder="Masukkan Password" id="exampleInputPassword1">
                 </div>
                 <div class="mb-3">
-                    <label for="captcha" class="form-label">Captcha</label> <br>
+                    <label for="captcha" class="form-label">Masukkan Captcha dibawah ini</label> <br>
                     <img src="captcha.php" alt="Captcha Image" /> <br> <br>
                     <input type="text" name="captcha" class="form-control" placeholder="Enter Captcha Code" id="captcha">
                 </div>

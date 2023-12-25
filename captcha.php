@@ -21,7 +21,7 @@ $code = acakCaptcha();
 $_SESSION["code"] = $code;
 
 //lebar dan tinggi captcha
-$wh = imagecreatetruecolor(173, 50);
+$wh = imagecreatetruecolor(150, 50);
 
 //background color biru
 $bgc = imagecolorallocate($wh, 22, 86, 165);
