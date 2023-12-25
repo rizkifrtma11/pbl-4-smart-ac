@@ -69,6 +69,10 @@ if (isset($_POST['Register'])) {
         ?>
         <form method="post">
             <div class="mb-3">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="nama" name="nama" class="form-control" placeholder="Masukkan Nama">
+            </div>
+            <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" name="username" value="<?php echo $username ?>" class="form-control" placeholder="Masukkan Username">
             </div>

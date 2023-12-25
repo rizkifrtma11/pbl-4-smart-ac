@@ -13,7 +13,7 @@ if (isset($_POST['delete'])) {
 }
 
 // Query untuk mengambil data user dari tabel "user" beserta tanggal pembuatan (tgl_buat)
-$query = "SELECT id, username, password, tgl_buat FROM user";
+$query = "SELECT id, nama, username, password, tgl_buat FROM user";
 $result = mysqli_query($koneksi, $query);
 ?>
 
@@ -40,6 +40,7 @@ $result = mysqli_query($koneksi, $query);
         <thead>
             <tr>
             <th>ID</th>
+            <th>Nama</th>
             <th>Username</th>
             <th>Password</th>
             <th>Tanggal Dibuat</th>
@@ -51,6 +52,7 @@ $result = mysqli_query($koneksi, $query);
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr>";
                 echo "<td>" . $row['id'] . "</td>";
+                echo "<td>" . $row['nama'] . "</td>";
                 echo "<td>" . $row['username'] . "</td>";
                 echo "<td>" . $row['password'] . "</td>";
                 echo "<td>" . $row['tgl_buat'] . "</td>";
