@@ -1,5 +1,5 @@
 # pbl-4-smart-ac
-kelompok 4 pbl
+Kelompok 4 PBL
 
 Anggota :
 1. Rizki
