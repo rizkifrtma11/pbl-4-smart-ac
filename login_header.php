@@ -37,6 +37,7 @@ if (isset($_POST['Login'])) {
             exit();
         } else {
             $err .= "<li>Password atau username salah</li>";
+            $err .= "<li>Akun tidak ditemukan, harap hubungi admin</li>";
         }
     }
 }
