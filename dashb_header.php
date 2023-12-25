@@ -23,21 +23,28 @@ $username = $_SESSION['admin_username'];
     <link rel="shortcut icon" href="img/ac.png" type="image/x-icon">
 </head>
 <body>
-    <!-- Start navbar -->
-    <nav class="navbar navbar-expand-lg bg-dark">
-        <div class="container">
-            <a class="navbar-brand text-light" href="#">Smart AC</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link text-light hover-list" href="dashboard.php">Dashboard</a>
-                    <a class="nav-link text-light hover-list" href="remote_ac.php">Remote AC</a>
-                    <a class="nav-link text-light hover-list" href="riwayat_ac.php">Usage History</a>
-                    <a class="nav-link text-light hover-list" href="logout.php">Logout</a>
-                </div>
+    
+<!-- Start navbar -->
+<nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container">
+        <a class="navbar-brand text-light" href="">Smart AC</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link text-light hover-list" href="dashboard.php">Dashboard</a>
+                <a class="nav-link text-light hover-list" href="remote_ac.php">Remote AC</a>
+                <a class="nav-link text-light hover-list" href="riwayat_ac.php">Usage History</a>
+                <a class="nav-link text-light hover-list" href="logout.php">Logout</a>
             </div>
+            
+            <!-- Tambahkan bagian ini untuk menampilkan username -->
+            <div class="navbar-nav ms-auto">
+                <span class="nav-item nav-link text-light">Selamat Datang, <?php echo $username; ?></span>
+            </div>
+            <!-- Akhir bagian username -->
         </div>
-    </nav>
-    <!-- End navbar -->
+    </div>
+</nav>
+<!-- End navbar -->
