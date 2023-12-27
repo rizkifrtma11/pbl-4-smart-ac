@@ -7,6 +7,7 @@ $err = "";
 $message = ""; // Inisialisasi pesan pemberitahuan
 
 if (isset($_POST['Register'])) {
+    $nama = $_POST['nama'];
     $username = $_POST['username'];
     $password = $_POST['password'];
 
@@ -30,7 +31,7 @@ if (isset($_POST['Register'])) {
             // Mengenkripsi password dengan MD5
             $hashedPassword = md5($password);
 
-            $query = "INSERT INTO user (username, password) VALUES ('$username', '$hashedPassword')";
+            $query = "INSERT INTO user (nama, username, password) VALUES ('$nama', '$username', '$hashedPassword')";
 
             if (mysqli_query($koneksi, $query)) {
                 $message = "Registrasi berhasil!";

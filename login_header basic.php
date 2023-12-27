@@ -2,7 +2,7 @@
 session_start();
 $err = "";
 
-// Fungsi untuk membatasi percobaan login
+// Function to limit login attempts
 function limit_login_attempts($username) {
     $max_attempts = 3; // Jumlah maksimal percobaan login
     $lockout_time = 5; // Waktu dalam detik untuk mengunci akun setelah melebihi batas percobaan
@@ -30,11 +30,11 @@ include("connect.php");
 $username = "";
 $password = "";
 
-// Periksa apakah pengguna terkunci
+// Check if user is blocked
 if (isset($_SESSION['login_blocked'][$username]) && $_SESSION['login_blocked'][$username] > time()) {
     $err .= "<li>Akun Anda terkunci. Coba lagi dalam 1 menit.</li>";
 } else {
-    // Validasi percobaan login
+    // Validate login attempts
     limit_login_attempts($username);
 
     if (isset($_POST['Login'])) {
@@ -46,36 +46,29 @@ if (isset($_SESSION['login_blocked'][$username]) && $_SESSION['login_blocked'][$
             $err .= "<li>Silahkan masukkan username, password, dan captcha</li>";
         }
 
-        // Validasi captcha
+        // Validate captcha
         if ($userCaptcha !== $_SESSION['code']) {
             $err .= "<li>Captcha salah</li>";
         }
 
         if (empty($err)) {
-            // Gunakan prepared statement untuk mencegah SQL injection
-            $sql1 = "SELECT * FROM user WHERE username = ?";
-            $stmt = mysqli_prepare($koneksi, $sql1);
-            mysqli_stmt_bind_param($stmt, 's', $username);
-            mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_get_result($stmt);
-            $r1 = mysqli_fetch_array($result);
+            $sql1 = "select * from user where username = '$username'";
+            $q1 = mysqli_query($koneksi, $sql1);
+            $r1 = mysqli_fetch_array($q1);
 
             if ($r1 && $r1['password'] == md5($password)) {
                 $_SESSION['admin_username'] = $username;
-                // Reset percobaan login setelah berhasil login
+                // Reset login attempts upon successful login
                 $_SESSION['login_attempts'][$username] = 0;
                 header("location: dashboard.php");
                 exit();
             } else {
                 $err .= "<li>Akun tidak ditemukan, harap hubungi admin.</li>";
             }
-
-            mysqli_stmt_close($stmt);
         }
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
