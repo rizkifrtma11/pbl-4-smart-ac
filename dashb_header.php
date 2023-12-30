@@ -7,7 +7,21 @@ if (!isset($_SESSION['admin_username'])) {
     exit();
 }
 
+// Koneksi ke database
+include("connect.php");
+
+// Mengambil nama pengguna dari database
 $username = $_SESSION['admin_username'];
+$query = "SELECT nama FROM user WHERE username = '$username'";
+$result = mysqli_query($koneksi, $query);
+
+if ($result && mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $nama_pengguna = $row['nama'];
+} else {
+    // Handle jika data nama tidak ditemukan
+    $nama_pengguna = "Pengguna"; // Default
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,14 +30,14 @@ $username = $_SESSION['admin_username'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Smart AC</title>
-    <!-- bootstrap -->
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- font awesome -->
+    <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="fontawesome/css/all.css" />
     <link rel="shortcut icon" href="img/ac.png" type="image/x-icon">
 </head>
 <body>
-    
+
 <!-- Start navbar -->
 <nav class="navbar navbar-expand-lg bg-dark">
     <div class="container">
@@ -39,12 +53,17 @@ $username = $_SESSION['admin_username'];
                 <a class="nav-link text-light hover-list" href="logout.php">Logout</a>
             </div>
             
-            <!-- Tambahkan bagian ini untuk menampilkan username -->
+            <!-- Menampilkan nama pengguna di navbar -->
             <div class="navbar-nav ms-auto">
-                <span class="nav-item nav-link text-light">Selamat Datang, <?php echo $username; ?></span>
+                <span class="nav-item nav-link text-light">Selamat Datang, <?php echo $nama_pengguna; ?></span>
             </div>
-            <!-- Akhir bagian username -->
         </div>
     </div>
 </nav>
 <!-- End navbar -->
+
+<!-- Bootstrap JS -->
+<script src="jQuery/jquery-3.3.1.slim.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
