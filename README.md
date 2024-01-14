@@ -7,4 +7,3 @@ Anggota :
 3. Ammar
 4. Aldo
 5. Zahran
-6. Syaifulloh
